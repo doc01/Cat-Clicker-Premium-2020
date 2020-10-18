@@ -17,7 +17,7 @@
         <h1>Cat Clicker App</h1>
         <ul class="cat-names">
         </ul>
-        <p class="intro__message">Start by choosing a cat from the list</p> 
+        <p class="intro__message">Start by choosing a cat from the list</p>
       </div>
       <div class="main-content row center">
 
@@ -69,7 +69,9 @@
           </div>
           <div class="cat row">
             <div class="col">
-              <img class="mehow" src="https://images.unsplash.com/photo-1546457028-48b8bc63fe98?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9" alt="" data-name="Whitey Boss" data-id="3">
+              <img class="mehow"
+                src="https://images.unsplash.com/photo-1546457028-48b8bc63fe98?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9"
+                alt="" data-name="Whitey Boss" data-id="3">
               <div class="row space-between">
                 <div class="col">
                   <p class="">A photo of a cat</p>
@@ -84,7 +86,8 @@
           </div>
           <div class="cat row">
             <div class="col">
-              <img class="mehow" src="https://source.unsplash.com/collection/139386" alt="" data-name="Random Cat from Unsplash" data-id="4">
+              <img class="mehow" src="https://source.unsplash.com/collection/139386" alt=""
+                data-name="Random Cat from Unsplash" data-id="4">
               <div class="row space-between">
                 <div class="col">
                   <p class="">A photo of a cat</p>
@@ -108,6 +111,13 @@
     <span style="padding-top: 8px;">Number of times all cats photos were clicked </span>
     <div class="all-results">Start the Fun by Clicking on one of the Cat Photo!</div>
   </footer>
+
+
+  <template id="catListTemplate">
+    <li class="cat-name" data-id="{{id}}">{{catName}}</li>
+  </template>
+
+
 </body>
 <script src="app.js"></script>
 
