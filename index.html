@@ -22,84 +22,7 @@
       <div class="main-content row center">
 
         <div class="cats row center">
-          <div class="cat row">
-            <div class="col">
-              <img class="mehow" src="img/cat.jpg" alt="" data-name="Kitty Blue Eyes" data-id="0">
-              <div class="row space-between">
-                <div class="col">
-                  <p class="">A photo of a cat</p>
-                </div>
-              </div>
-            </div>
-            <div class="col box-results">
-              <span class="btn">Times Clicked</span>
-              <!-- <span class="box-results__text">Times Clicked:</span> -->
-              <span class="box-results__clicked">Start the Fun by Clicking on one of the Cat Photo!</span>
-            </div>
-          </div>
-          <div class="cat row">
-            <div class="col">
-              <img class="mehow" src="img/cat-2.jpg" alt="" data-name="Kitty Kitty Kitty" data-id="1">
-              <div class="row space-between">
-                <div class="col">
-                  <p class="">A photo of a cat</p>
-                </div>
-              </div>
-            </div>
-            <div class="col box-results">
-              <span class="btn">Times Clicked</span>
-              <!-- <span class="box-results__text">Times Clicked:</span> -->
-              <span class="box-results__clicked">Start the Fun by Clicking on one of the Cat Photo!</span>
-            </div>
-          </div>
-          <div class="cat row">
-            <div class="col">
-              <img class="mehow" src="img/Tabby A and Tabbt B.jpg" alt="" data-name="Tabby A and Tabby B" data-id="2">
-              <div class="row space-between">
-                <div class="col">
-                  <p class="">A photo of a cat</p>
-                </div>
-              </div>
-            </div>
-            <div class="col box-results">
-              <span class="btn">Times Clicked</span>
-              <!-- <span class="box-results__text">Times Clicked:</span> -->
-              <span class="box-results__clicked">Start the Fun by Clicking on one of the Cat Photo!</span>
-            </div>
-          </div>
-          <div class="cat row">
-            <div class="col">
-              <img class="mehow"
-                src="https://images.unsplash.com/photo-1546457028-48b8bc63fe98?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9"
-                alt="" data-name="Whitey Boss" data-id="3">
-              <div class="row space-between">
-                <div class="col">
-                  <p class="">A photo of a cat</p>
-                </div>
-              </div>
-            </div>
-            <div class="col box-results">
-              <span class="btn">Times Clicked</span>
-              <!-- <span class="box-results__text">Times Clicked:</span> -->
-              <span class="box-results__clicked">Start the Fun by Clicking on one of the Cat Photo!</span>
-            </div>
-          </div>
-          <div class="cat row">
-            <div class="col">
-              <img class="mehow" src="https://source.unsplash.com/collection/139386" alt=""
-                data-name="Random Cat from Unsplash" data-id="4">
-              <div class="row space-between">
-                <div class="col">
-                  <p class="">A photo of a cat</p>
-                </div>
-              </div>
-            </div>
-            <div class="col box-results">
-              <span class="btn">Times Clicked</span>
-              <!-- <span class="box-results__text">Times Clicked:</span> -->
-              <span class="box-results__clicked">Start the Fun by Clicking on one of the Cat Photo!</span>
-            </div>
-          </div>
+    
         </div>
 
       </div>
@@ -115,6 +38,24 @@
 
   <template id="catListTemplate">
     <li class="cat-name" data-id="{{id}}">{{catName}}</li>
+  </template>
+
+  <template id="catDisplayTemplate">
+    <div class="cat row">
+      <div class="col">
+        <img class="mehow" src="{{catImg}}" alt="" data-name="{{catName}}" data-id="{{catId}}">
+        <div class="row space-between">
+          <div class="col">
+            <p class="description">{{catDescription}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col box-results">
+        <span class="btn">Times Clicked</span>
+        <!-- <span class="box-results__text">Times Clicked:</span> -->
+        <span class="box-results__clicked">Start the fun by clicking on the cat photo!</span>
+      </div>
+    </div>
   </template>
 
 

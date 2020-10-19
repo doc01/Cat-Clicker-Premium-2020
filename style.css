@@ -74,7 +74,7 @@ img {
   margin-top: 3vh;
   -webkit-box-shadow: 0px 0px 0px 6px rgba(34, 166, 179, 0.35) inset;
   -moz-box-shadow: 0px 0px 0px 6px rgba(34, 166, 179, 0.35) inset;
-  box-shadow: 0px 0px 0px 6px rgba(34, 166, 179, 0.35)inset;
+  box-shadow: 0px 0px 0px 6px rgba(34, 166, 179, 0.35) inset;
 }
 
 .cat-names {
@@ -91,7 +91,7 @@ img {
 .cat-name {
   display: block;
   padding: 3px;
-  transition: font-weight 0.15s ease-in-out .10s;
+  transition: font-weight 0.15s ease-in-out 0.1s;
 }
 
 .cat-name:nth-child(even) {
@@ -107,13 +107,22 @@ img {
   flex-direction: column;
 }
 
+.col {
+  opacity: inherit;
+}
+
 .cat {
   margin-bottom: 3vh;
   border: 1px solid rgba(34, 166, 179, 1);
   border-bottom: 0;
   padding: 0 0;
   text-align: center;
-  display: none;
+  transition: opacity 0.45s ease-in;
+  opacity: 0;
+}
+
+.fadein {
+  opacity: 1;
 }
 
 .center {
@@ -155,6 +164,7 @@ img {
 
 .box-results__clicked {
   padding: 1.5rem 2rem;
+  flex-basis: 100%;
 }
 
 .box-results__text {
