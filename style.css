@@ -16,6 +16,7 @@
 
 html {
   box-sizing: border-box;
+  height: 100%;
 }
 
 *,
@@ -35,15 +36,20 @@ pre {
 
 body {
   font-family: sans-serif;
-  margin: 5vh 0;
+  /* margin: 5vh 0; */
   margin-bottom: 0;
   line-height: 1.6;
+  height: 100%;
+}
+
+.main {
+  min-height: calc(100% - 58px);
 }
 
 footer {
   background: #cecece;
-  margin-top: 12vh;
   width: 100%;
+  overflow: hidden;
 }
 
 p {
