@@ -36,7 +36,7 @@
       {
         name: 'Random Cat from Unsplash',
         description: 'A photo of a cat',
-        img: 'https://source.unsplash.com/collection/139386',
+        img: 'https://source.unsplash.com/640x454/?cat',
         clicksCount: 0,
         id: 4,
       },
@@ -53,6 +53,18 @@
       lastCat = currentCat;
       const currentCatData = data.cats.filter(cat => cat.id === currentCat);
       viewDisplay.displayCat(...currentCatData);
+    },
+
+    handleImgClick: function (id) {
+      data.cats.forEach(cat => {
+        if (cat.id === id) {
+          ++cat.clicksCount;
+          cat.clicksCount === 1 ? viewDisplay.displayClicks(cat.clicksCount, true) : viewDisplay.displayClicks(cat.clicksCount, false);
+        }
+      });
+      let allClicks = 0;
+      data.cats.forEach(cat => allClicks += cat.clicksCount);
+      viewDisplay.displayAllClicks(allClicks);
     },
 
     init: function () {
@@ -92,6 +104,8 @@
       this.catsContainer = document.querySelector('.main-content .cats');
       this.welcomeMessage = document.querySelector('.intro__message');
       this.results;
+      this.img;
+      this.allResults;
     },
 
     displayCat: function (catData) {
@@ -103,22 +117,34 @@
       catTemplate = catTemplate.replace(/{{catId}}/g, catData.id);
       catTemplate = catTemplate.replace(/{{catDescription}}/g, catData.description);
       catsContainer.innerHTML = catTemplate;
-      const cat = catsContainer.children[0];
+      // Adding the cat already clicks
       this.result = document.querySelector('.box-results__clicked');
-      this.displayClicks(catData.clicksCount);
+      catData.clicksCount > 0 ? this.displayClicks(catData.clicksCount, true) : '';
+      // Fading in the cat
+      const cat = catsContainer.children[0];
       setTimeout(() => { cat.classList.add("fadein") }, 0.45);
+      // Creating event listiner for the image
+      this.img = document.querySelector('.col .mehow');
+      const imgId = parseInt(this.img.dataset.id);
+      this.img.addEventListener('click', () => octopus.handleImgClick(imgId));
     },
 
-    displayClicks: function (clicks) {
+    displayClicks: function (clicks, firstTime) {
       const results = this.result;
-      console.log(results)
-      const btn = document.querySelector('.btn');
-      if(clicks > 0 ) {
-        results.textContent = clicks;
+      results.textContent = clicks;
+      if (firstTime === true) {
+        const btn = document.querySelector('.btn');
         btn.style.display = 'block';
-      } 
+      }
     },
+
+    displayAllClicks: function (allClicks) {
+      this.allResults = document.querySelector('.all-results');
+      const allResults = this.allResults;
+      allResults.textContent = allClicks;
+    }
   }
+
 
   octopus.init();
 }());
