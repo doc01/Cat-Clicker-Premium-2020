@@ -44,6 +44,7 @@ body {
 
 .main {
   min-height: calc(100% - 58px);
+  margin-bottom: 5vh;
 }
 
 footer {
@@ -138,6 +139,72 @@ img {
 
 .space-between {
   justify-content: inherit;
+}
+
+/* Admin Area */
+
+.admin {
+  margin-bottom: 5vh;
+  margin-top: 3vh;
+  width: 100%;
+  max-width: 640px;
+  display: none;
+}
+
+.admin__label {
+  font-size: 0.8rem;
+}
+
+.admin-btn {
+  text-decoration: none;
+  color: #fff;
+  background: #22a6b3;
+  box-sizing: border-box;
+  padding: 0.4rem 2.5rem;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.admin-btn:hover {
+  background: #00727e;
+}
+
+.admin-btn:focus {
+  -webkit-box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.75);
+  border: 1px solid #22a6b3;
+  outline: 0 !important;
+}
+
+.admin__input {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 8px;
+  border: 1px solid #22a6b3;
+  padding: 4px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.admin__input:focus {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(34, 166, 179, 0.25);
+}
+
+.admin-btn--cancel {
+  background: #fff;
+  border: 1px solid #22a6b3;
+  color: #22a6b3;
+}
+
+.admin-btn--cancel:hover {
+  background: transparent;
+}
+
+.admin-btn--save {
+  /* margin-left: 8px; */
 }
 
 /* Global CSS  */
