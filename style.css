@@ -99,6 +99,7 @@ img {
   display: block;
   padding: 3px;
   transition: font-weight 0.15s ease-in-out 0.1s;
+  cursor: pointer;
 }
 
 .cat-name:nth-child(even) {
@@ -106,6 +107,10 @@ img {
 }
 
 .cat-name:hover {
+  font-weight: bold;
+}
+
+.cat-name--active {
   font-weight: bold;
 }
 
@@ -143,12 +148,18 @@ img {
 
 /* Admin Area */
 
-.admin {
+.admin-panel {
   margin-bottom: 5vh;
   margin-top: 3vh;
   width: 100%;
   max-width: 640px;
-  display: none;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.45s ease-in-out;
+}
+
+.admin-panel-active {
+  opacity: 1;
 }
 
 .admin__label {
@@ -164,6 +175,14 @@ img {
   border-radius: 5px;
   border: 1px solid transparent;
   cursor: pointer;
+}
+
+.admin-btn--main {
+  display: none;
+}
+
+.open {
+  display: block;
 }
 
 .admin-btn:hover {

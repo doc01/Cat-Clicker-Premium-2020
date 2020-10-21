@@ -1,7 +1,7 @@
 (function () {
 
   const data = {
-    currentCat: 0,
+    currentCat: null,
     lastCat: null,
     totalClicks: 0,
     cats: [
@@ -49,10 +49,11 @@
     },
 
     handleListClick: function (e) {
-      currentCat = parseInt(e.target.dataset.id);
-      lastCat = currentCat;
-      const currentCatData = data.cats.filter(cat => cat.id === currentCat);
+      data.lastCat = data.currentCat;
+      data.currentCat = parseInt(e.target.dataset.id);
+      const currentCatData = data.cats.filter(cat => cat.id === data.currentCat);
       viewDisplay.displayCat(...currentCatData);
+      viewAdmin.showAdminBtn();
     },
 
     handleImgClick: function (id) {
@@ -62,14 +63,46 @@
           cat.clicksCount === 1 ? viewDisplay.displayClicks(cat.clicksCount, true) : viewDisplay.displayClicks(cat.clicksCount, false);
         }
       });
+      viewDisplay.displayAllClicks(this.getAllClicks());
+    },
+
+    getAllClicks: function () {
       let allClicks = 0;
       data.cats.forEach(cat => allClicks += cat.clicksCount);
-      viewDisplay.displayAllClicks(allClicks);
+      return allClicks;
+
     },
+
+    // admin functions
+    getCurrentCat: function () {
+      return data.cats.filter(cat => cat.id === data.currentCat);
+    },
+
+    getLastCat: function () {
+      return data.lastCat;
+    },
+
+    handleEdit: function (catEdit) {
+
+      data.cats.forEach((cat => {
+        if (data.currentCat === cat.id) {
+          cat.name = catEdit.name;
+          cat.img = catEdit.img;
+          cat.clicksCount = parseInt(catEdit.clicksCount);
+          catEdit.id = cat.id;
+          viewDisplay.displayCat(cat);
+          viewList.editCatList(cat);
+        }
+      }));
+      this.getAllClicks() > 0 ? viewDisplay.displayAllClicks(this.getAllClicks()) : '';
+      viewAdmin.closeAdminPanel();
+    },
+
 
     init: function () {
       viewList.init();
       viewDisplay.init();
+      viewAdmin.init();
     }
   }
 
@@ -80,7 +113,11 @@
       this.catNamesElm = document.querySelector('.cat-names');
       viewList.catListDisplay();
       // Events Listiners
-      this.catNamesElm.addEventListener('click', octopus.handleListClick);
+      this.catNamesElm.addEventListener('click', function (e) {
+        octopus.handleListClick(e);
+        viewList.deActiveLast();
+        viewList.activeMenu(e);
+      });
     },
 
     catListDisplay: function () {
@@ -94,6 +131,29 @@
         this.catNamesElm.appendChild(li);
       });
     },
+
+    activeMenu: function (e) {
+      e.target.classList.add('cat-name--active');
+    },
+
+    deActiveLast: function () {
+      const arr = [...this.catNamesElm.childNodes];
+      arr.forEach(function (elm) {
+        if (elm.tagName === "LI" && parseInt(elm.dataset.id) === octopus.getLastCat()) {
+          elm.classList.remove('cat-name--active');
+        }
+      });
+    },
+
+    editCatList: function (newCatName) {
+      const arr = [...this.catNamesElm.childNodes];
+      arr.forEach(function (elm) {
+        if (elm.tagName === "LI" && parseInt(elm.dataset.id) === newCatName.id) {
+          elm.textContent = newCatName.name;
+        }
+      });
+
+    }
   }
 
   const viewDisplay = {
@@ -143,6 +203,55 @@
       const allResults = this.allResults;
       allResults.textContent = allClicks;
     }
+  }
+
+  const viewAdmin = {
+    init: function () {
+      this.adminBtn = document.querySelector('.admin-btn--main');
+      this.adminPanel = document.querySelector('.admin-panel');
+      this.nameInput = document.querySelector('.admin-panel .cat__name');
+      this.imgInput = document.querySelector('.admin-panel .cat__img');
+      this.clicksInput = document.querySelector('.admin-panel .cat__clicks');
+      this.saveBtn = document.querySelector('.admin-btn--save');
+      this.cancelBtn = document.querySelector('.admin-btn--cancel');
+
+      this.adminBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        return viewAdmin.openAdminPanel();
+      });
+      this.cancelBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        return viewAdmin.closeAdminPanel();
+      });
+      this.saveBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        return viewAdmin.handleSaveBtn();
+      });
+    },
+
+    showAdminBtn: function () {
+      this.adminBtn.classList.add('open');
+    },
+
+    openAdminPanel: function () {
+      const cat = octopus.getCurrentCat()[0];
+      this.nameInput.value = cat.name;
+      this.imgInput.value = cat.img;
+      this.clicksInput.value = cat.clicksCount;
+      this.adminPanel.classList.add('admin-panel-active');
+    },
+
+    closeAdminPanel: function () {
+      this.adminPanel.classList.remove('admin-panel-active');
+    },
+
+    handleSaveBtn: function () {
+      const catEdit = {};
+      catEdit.name = this.nameInput.value;
+      catEdit.img = this.imgInput.value;
+      catEdit.clicksCount = this.clicksInput.value;
+      octopus.handleEdit(catEdit);
+    },
   }
 
 
