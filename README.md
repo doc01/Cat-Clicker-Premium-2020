@@ -6,3 +6,5 @@ demo Premium - https://codepen.io/doc01/pen/JjKRLyv
 demo - Cat Clicker Premium Pro - https://codepen.io/doc01/pen/RwRooGV
 
 demo Spaghetti code - https://codepen.io/doc01/pen/wvWzmpB
+
+demo Cat Clicker Premium Pro w/ Knockout.js - https://codepen.io/doc01/pen/eYzVRev
