@@ -15,26 +15,50 @@
     <div class="container">
       <div style="margin-bottom: 5vh;" class="intro row center">
         <h1>Cat Clicker Premium Pro</h1>
-        <ul class="cat-names">
+        <ul class="cat-names" data-bind="foreach: catList">
+          <li class="cat-name" data-bind="text: name, click: $parent.setCurrentCat"></li>
         </ul>
-        <p class="intro__message">Start by choosing a cat from the list</p>
+        <p class="intro__message" data-bind="visible: showWelcomeMessage">Start by choosing a cat from the list</p>
       </div>
       <div class="main-content row center">
 
         <div class="cats row center">
 
+          <div class="cat row" data-bind="with: currentCat">
+            <div class="col">
+              <img class="mehow" src="" alt=""
+                data-bind="attr: { src: imgSrc, title: name }, click: $parent.incrementCounter">
+              <div class="row space-between">
+                <div class="col">
+                  <p class="description" data-bind="text : description"></p>
+                  <p class="level" data-bind="text : levelUp"></p>
+
+                </div>
+              </div>
+            </div>
+            <div class="col box-results">
+              <span class="btn" data-bind="hidden: $parent.clickMessage">Times Clicked</span>
+              <span class="box-results__clicked" data-bind="visible: $parent.clickMessage">
+                Start the fun by clicking on the cat photo!</span>
+              <span class="box-results__clicked" data-bind="hidden: $parent.clickMessage, text: clickCount"></span>
+            </div>
+          </div>
+
         </div>
 
-        <button class="admin-btn admin-btn--main">Admin</button>
-        <div class="admin-panel">
+        <button class="admin-btn admin-btn--main"
+          data-bind="hidden: showWelcomeMessage, click: displyAdminPanel">Admin</button>
+        <form class="admin-panel" data-bind="with: currentCat, submit: handleAdminSubmit, visible: showAdminPanel">
           <label class="admin__label" for="cname">Cat New Name</label>
-          <input type="text" class="admin__input cat__name" placeholder="" id="cname">
+          <input type="text" class="admin__input cat__name" placeholder="" id="cname" data-bind="textInput: name">
           <label class="admin__label" for="cimg">Cat New Photo</label>
-          <input type="text" class="admin__input cat__img" placeholder="" id="cimg">
+          <input type="text" class="admin__input cat__img" placeholder="" id="cimg" data-bind="textInput: imgSrc">
           <label class="admin__label" for="clicks"># of Clicks</label>
-          <input type="number" class="admin__input cat__clicks" placeholder="" id="clicks">
-          <button class="admin-btn admin-btn--save">Save</button> <button class="admin-btn admin-btn--cancel">Cancel</button>
-        </div>
+          <input type="number" class="admin__input cat__clicks" placeholder="" id="clicks"
+            data-bind="textInput: clickCount">
+          <button class="admin-btn admin-btn--save" type="submit">Save</button>
+          <button class="admin-btn admin-btn--cancel" data-bind="click: $parent.hideAdminPanel">Cancel</button>
+        </form>
 
       </div>
     </div>
@@ -43,34 +67,13 @@
 
   <footer style="text-align: center;" class="row">
     <span style="padding-top: 8px;">Number of times all cats photos were clicked </span>
-    <div class="all-results">Start the Fun by Clicking on one of the Cat Photo!</div>
+    <div class="all-results"
+      data-bind="text: getAllClicks() > 0 ? totalClicks : 'Start the Fun by Clicking on one of the Cat Photo!'">
+    </div>
   </footer>
 
-
-  <template id="catListTemplate">
-    <li class="cat-name" data-id="{{id}}">{{catName}}</li>
-  </template>
-
-  <template id="catDisplayTemplate">
-    <div class="cat row">
-      <div class="col">
-        <img class="mehow" src="{{catImg}}" alt="" data-name="{{catName}}" data-id="{{catId}}">
-        <div class="row space-between">
-          <div class="col">
-            <p class="description">{{catDescription}}</p>
-          </div>
-        </div>
-      </div>
-      <div class="col box-results">
-        <span class="btn">Times Clicked</span>
-        <!-- <span class="box-results__text">Times Clicked:</span> -->
-        <span class="box-results__clicked">Start the fun by clicking on the cat photo!</span>
-      </div>
-    </div>
-  </template>
-
-
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
 <script src="app.js"></script>
 
 </html>

@@ -130,7 +130,7 @@ img {
   padding: 0 0;
   text-align: center;
   transition: opacity 0.45s ease-in;
-  opacity: 0;
+  opacity: 1;
 }
 
 .fadein {
@@ -154,7 +154,7 @@ img {
   width: 100%;
   max-width: 640px;
   display: block;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.45s ease-in-out;
 }
 
@@ -175,10 +175,6 @@ img {
   border-radius: 5px;
   border: 1px solid transparent;
   cursor: pointer;
-}
-
-.admin-btn--main {
-  display: none;
 }
 
 .open {
@@ -248,7 +244,6 @@ img {
   color: #fff;
   background: #22a6b3;
   box-sizing: border-box;
-  display: none;
   padding: 1.5rem 5.5rem;
   text-transform: uppercase;
   width: 100%;
